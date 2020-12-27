@@ -87,7 +87,7 @@ public class GraphDB {
      * @return An iterable of the ids of the neighbors of v.
      */
     Iterable<Long> adjacent(long v) {
-        return nodes.get(v).adj;
+        return nodes.get(v).adj.keySet();
     }
 
     /**
@@ -184,21 +184,21 @@ public class GraphDB {
         double lon;
         double lat;
         String name;
-        Set<Long> adj;
+        HashMap<Long,String> adj;
         Map<String, String> extraInfo;
 
         Node(long id, double lon,double lat) {
             this.id = id;
             this.lon = lon;
             this.lat = lat;
-            this.adj = new HashSet<>();
+            this.adj = new HashMap<>();
             this.extraInfo = new HashMap<>();
         }
         void setName(String name){
             this.name = name;
         }
-        void setAdj(long nodeid){
-            this.adj.add(nodeid);
+        void setAdj(long nodeid,String wayname){
+            this.adj.put(nodeid,wayname);
         }
         void setExtraInfo(String k, String v){
             this.extraInfo.put(k,v);
@@ -228,15 +228,20 @@ public class GraphDB {
     void addNode(Node node){
         nodes.put(node.id,node);
     }
-    void addEdge(Long id,Long from, Long to){
+    void addEdge(Long id,Long from, Long to,String wayName){
         Node fromNode = nodes.get(from);
         Node toNode = nodes.get(to);
         ways.put(id, new Edge(from,to,distance(fromNode.lon,fromNode.lat,toNode.lon,toNode.lat)));
-        fromNode.setAdj(to);
-        toNode.setAdj(from);
+        fromNode.setAdj(to,wayName);
+        toNode.setAdj(from,wayName);
     }
     void deleteNode(Node node){
         nodes.remove(node.id);
     }
 
+
+
+    String getEdgeName(Long from,Long to){
+        return nodes.get(from).adj.get(to);
+    }
 }

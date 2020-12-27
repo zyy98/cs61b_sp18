@@ -144,11 +144,12 @@ public class GraphBuildingHandler extends DefaultHandler {
         if (qName.equals("way")) {
             if(validWay){
                 for(int i = 0;i<nodePath.size()-1;i ++){
-                    g.addEdge(wayid,nodePath.get(i),nodePath.get(i+1));
+                    g.addEdge(wayid,nodePath.get(i),nodePath.get(i+1),wayname);
                 }
             }
             validWay = false;
             nodePath = new ArrayList<>();
+            wayname = "";
             /* We are done looking at a way. (We finished looking at the nodes, speeds, etc...)*/
             /* Hint1: If you have stored the possible connections for this way, here's your
             chance to actually connect the nodes together if the way is valid. */

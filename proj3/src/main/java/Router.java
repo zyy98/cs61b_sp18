@@ -13,6 +13,7 @@ import static java.util.Collections.*;
  * down to the priority you use to order your vertices.
  */
 public class Router {
+
     /**
      * Return a List of longs representing the shortest path from the node
      * closest to a start location and the node closest to the destination
@@ -26,7 +27,56 @@ public class Router {
      */
     public static List<Long> shortestPath(GraphDB g, double stlon, double stlat,
                                           double destlon, double destlat) {
+        long startNode = g.closest(stlon,stlat);
+        long endNode = g.closest(destlon,destlat);
+        HashMap<Long, Double> disTo = new HashMap<>();
+        HashMap<Long,Long> edgeTo = new HashMap<>();
+        List<Long> path = new LinkedList<Long>();
+        boolean flag = false;
+        PriorityQueue<Long> fringe = new PriorityQueue<>(new Comparator<Long>() {
+            @Override
+            public int compare(Long o1, Long o2) {
+                double w1 = disTo.get(o1) + g.distance(o1,endNode);
+                double w2 = disTo.get(o2) + g.distance(o2,endNode);
+                return Double.compare(w1,w2);  //have a try, not negative, this is how to remove lowest priority
+            }
+        });
 
+        for(Long id:g.vertices()){
+            if(id.equals(startNode)){
+                disTo.put(id, (double) 0);
+            }else{
+                disTo.put(id,Double.MAX_VALUE);
+            }
+        }
+
+        fringe.add(startNode);
+
+        while (!fringe.isEmpty()){
+            Long from = fringe.remove();
+            //if(disTo.containsKey(from)){continue;}
+            if(from.equals(endNode)){flag = true;}
+            //disTo.put(from,g.distance())
+            for(Long to : g.adjacent(from)){
+                if (disTo.get(to) > disTo.get(from)+g.distance(to,from)){
+                    disTo.put(to,disTo.get(from)+g.distance(to,from));
+                    edgeTo.put(to,from);
+                    fringe.add(to);
+                }
+            }
+        }
+        if (flag){
+            Long temp = endNode;
+            path.add(temp);
+            while(!temp.equals(startNode)){
+                path.add(edgeTo.get(temp));
+                temp = edgeTo.get(temp);
+            }
+        }
+        reverse(path);
+        return path;
+
+/*Method One, takes longer time
         long startNode = g.closest(stlon,stlat); //because Node is static, cannot use g.Node
         long endNode = g.closest(destlon,destlat);
         HashMap<Long, Double> disTo = new HashMap<>();
@@ -79,6 +129,7 @@ public class Router {
         }
         reverse(path);
         return path;
+ */
         // FIXME
     }
 
@@ -95,9 +146,60 @@ public class Router {
      * route.
      */
     public static List<NavigationDirection> routeDirections(GraphDB g, List<Long> route) {
-        return null; // FIXME
+        List<NavigationDirection> res = new ArrayList<>();
+        NavigationDirection nd = new NavigationDirection();
+        nd.direction = NavigationDirection.START;;
+        nd.distance = g.distance(route.get(0),route.get(1));
+        nd.way = g.getEdgeName(route.get(0),route.get(1));
+
+        for (int i = 1,j = 0;i < route.size()-1;i ++, j++){
+            Long fromId = route.get(i);
+            Long toId = route.get(i+1);
+            String way = g.getEdgeName(fromId,toId);
+            double curBearing =g.bearing(fromId,toId);
+            double prevBearing = g.bearing(route.get(j),fromId);
+            double distance = g.distance(fromId,toId);
+            if (nd.way.equals(way)){
+                nd.distance += distance;
+            }else{
+                res.add(nd);
+
+                nd = new NavigationDirection();
+                nd.distance = distance;
+                nd.way = way;
+                nd.direction = bearingToDirections(prevBearing,curBearing);
+            }
+        }
+        res.add(nd);
+        return res; // FIXME
     }
 
+
+    private static int bearingToDirections(double prevBearing, double curBearing){  //to use this method, make it static
+        double diff = curBearing-prevBearing;
+        if (diff > 180) {
+            diff -= 360;
+        } else if (diff < -180) {
+            diff += 360;
+        }
+        int directions = -1;
+        if (diff>= -15 && diff <= 15){
+            directions = NavigationDirection.STRAIGHT;
+        }else if(diff > 15 && diff <= 30){
+            directions = NavigationDirection.SLIGHT_RIGHT;
+        }else if(diff > 30 && diff <= 100){
+            directions = NavigationDirection.RIGHT;
+        }else if(diff > 100){
+            directions = NavigationDirection.SHARP_RIGHT;
+        }else if(diff<-15 && diff >= -30){
+            directions = NavigationDirection.SLIGHT_LEFT;
+        }else if(diff < -30 && diff >=-100){
+            directions = NavigationDirection.LEFT;
+        }else if(diff <-100){
+            directions = NavigationDirection.SHARP_LEFT;
+        }
+        return directions;
+    }
 
     /**
      * Class to represent a navigation direction, which consists of 3 attributes:

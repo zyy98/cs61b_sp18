@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6555f38a-e891-4a82-9766-ef7e8b4dd8d1" name="Default Changelist" comment="" />
+    <list default="true" id="3b469afe-9b2f-49f9-a16d-8e09eeae7981" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CompilerWorkspaceConfiguration">
-    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
-    <option name="PARALLEL_COMPILATION" value="true" />
-  </component>
-  <component name="ErrorTreeViewConfiguration">
-    <option name="hideWarnings" value="true" />
-    <option name="HIDE_WARNINGS" value="true" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -23,11 +15,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectId" id="1luZoG9pdUVhIocDM3WEkgv6A5M" />
-  <component name="PropertiesComponent">
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
-  </component>
+  <component name="ProjectId" id="1mEnMk6C9Gtli3V5tLKf1XG0W51" />
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -41,8 +29,8 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.TestRouter">
-    <configuration name="GraphDBLauncher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="GraphDBLauncher" />
+    <configuration name="MapServer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MapServer" />
       <module name="proj3" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -76,23 +64,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestRouterTiny.test41to46" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="proj3" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestRouterTiny" />
-      <option name="METHOD_NAME" value="test41to46" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestRouter" />
         <item itemvalue="JUnit.TestRouterTiny" />
-        <item itemvalue="JUnit.TestRouterTiny.test41to46" />
         <item itemvalue="JUnit.TestRouterTiny.test22to11" />
-        <item itemvalue="Application.GraphDBLauncher" />
+        <item itemvalue="Application.MapServer" />
       </list>
     </recent_temporary>
   </component>
@@ -101,11 +78,11 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6555f38a-e891-4a82-9766-ef7e8b4dd8d1" name="Default Changelist" comment="" />
-      <created>1608449110019</created>
+      <changelist id="3b469afe-9b2f-49f9-a16d-8e09eeae7981" name="Default Changelist" comment="" />
+      <created>1609067571250</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1608449110019</updated>
+      <updated>1609067571250</updated>
     </task>
     <servers />
   </component>
@@ -113,44 +90,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Rasterer.java</url>
-          <line>126</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Rasterer.java</url>
-          <line>134</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/Rasterer.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/example/CSCourseDB.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/example/CSCourseDBHandler.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/TestGraphBuilding.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Router.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/TestRouterTiny.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="22" />
+          <line>60</line>
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
